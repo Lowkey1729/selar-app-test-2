@@ -1,43 +1,42 @@
 <template>
     <div>
         <div class="player-container">
-            <vplayer :playerOptions="vOption" @onplay="play"/>
+            <video-player class="vjs-custom-skin" ref="videoPlayer" :options="playerOptions">
+            </video-player>
         </div>
 
     </div>
 </template>
 <script>
-import HLSCore from '@core-player/playcore-hls'
-import player from 'vue-hls-player'
-import Vue from "vue";
 
-Vue.use(player)
+import Vue from "vue";
+import videoPlayer from "vue-vjs-hls";
+
+import VideoPlayer from 'vue-video-player';
+
+Vue.use(VideoPlayer)
+
 
 
 export default {
-    data() {
+    data () {
         return {
-            HLSCore,
-            vOption: {
-                type: "application/x-mpegURL",
-                src: 'http://127.0.0.1:8000/hls-stream_480p.ts',
-                preload: true,
-                autoplay: true,
-                isLoop: false,
-                playsinline: false,
-                controls: 'progress,current,durration,volume',
-                crossOrigin: false
-            },
-
+            url: '',
+            playerOptions: {
+                autoplay: false,
+                controls: true,
+                sources: [{
+                    type: "video/hls",
+                    src: "http://127.0.0.1:8000"
+                }]
+            }
         }
     },
-
     methods: {
-        play(e) {
-            console.log(e)
+        handleApply () {
+            this.playerOptions.sources[0].src = this.url
         }
     }
-
 }
 
 </script>

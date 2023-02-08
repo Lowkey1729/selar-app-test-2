@@ -13,6 +13,7 @@ PHP/Laravel, MYSQL, Tailwind CSS, and HTML
 ## ENV
 
 - Set <b>QUEUE_CONNECTION=database</b>
+- Set <b>APP_URL=127.0.0.1:8000</b>
 
 ## Guide
 
