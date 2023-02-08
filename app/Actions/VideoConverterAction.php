@@ -48,6 +48,6 @@ class VideoConverterAction
             ->hls()
             ->x264()
             ->addRepresentations([$r_480p, $r_720p])
-            ->save('./public/hls-converted.ts');
+            ->save('./public/selar-converts/hls-converted.ts');
     }
 }
