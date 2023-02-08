@@ -27,8 +27,7 @@ class VideoConverterAction
      * @throws InvalidArgumentException
      */
     private function __construct()
-    {
-        $this->setUup = __DIR__ . '/files';
+
         $this->handle();
     }
 
@@ -48,6 +47,6 @@ class VideoConverterAction
             ->hls()
             ->x264()
             ->addRepresentations([$r_480p, $r_720p])
-            ->save('./selar-outcome/hls-stream.ts');
+            ->save('./public/hls-converted.ts');
     }
 }

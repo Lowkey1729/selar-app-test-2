@@ -36,7 +36,7 @@ class HLSFilter extends FormatFilter
      */
     private function playlistPath(Representation $rep, bool $not_last): array
     {
-        return $not_last ? [$this->dirname . "/" . $this->filename . "_" . $rep->getHeight() . "p.ts"] : [];
+        return [$this->dirname . "/" . $this->filename . "_" . $rep->getHeight() . "p.ts"];
     }
 
     /**

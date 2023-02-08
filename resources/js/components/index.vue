@@ -1,23 +1,43 @@
 <template>
-    <div id="app">
+    <div>
         <div class="player-container">
-            <vue-core-video-player :core="HLSCore" src="your_file.m3u8"></vue-core-video-player>
+            <vplayer :playerOptions="vOption" @onplay="play"/>
         </div>
+
     </div>
 </template>
 <script>
-import VueCoreVideoPlayer from 'vue-core-video-player'
 import HLSCore from '@core-player/playcore-hls'
+import player from 'vue-hls-player'
+import Vue from "vue";
 
-Vue.use(VueCoreVideoPlayer)
+Vue.use(player)
+
 
 export default {
-    name: 'App',
-    data () {
+    data() {
         return {
-            HLSCore
+            HLSCore,
+            vOption: {
+                type: "application/x-mpegURL",
+                src: 'http://127.0.0.1:8000/hls-stream_480p.ts',
+                preload: true,
+                autoplay: true,
+                isLoop: false,
+                playsinline: false,
+                controls: 'progress,current,durration,volume',
+                crossOrigin: false
+            },
+
+        }
+    },
+
+    methods: {
+        play(e) {
+            console.log(e)
         }
     }
+
 }
 
 </script>
