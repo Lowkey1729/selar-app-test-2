@@ -45,8 +45,8 @@ class VideoConverterAction
             ->make()
             ->open(url('/test.mp4'))
             ->hls()
-            ->x264()
+            ->x264('h264')
             ->addRepresentations([$r_480p, $r_720p])
-            ->save($this->setUup . '/hls-stream.m3u8');
+            ->save($this->setUup . '/hls-stream.ts');
     }
 }

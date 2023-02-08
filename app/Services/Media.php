@@ -16,6 +16,10 @@ class Media
 
     /** @var bool */
     private $is_tmp;
+    /**
+     * @var
+     */
+    protected $input_options;
 
 
     /**
@@ -55,5 +59,33 @@ class Media
         return $this->media;
     }
 
+    /**
+     * @param $argument
+     * @return Media | BMedia
+     */
+    private function isInstanceofArgument($argument)
+    {
+        return ($argument instanceof $this->media) ? $this : $argument;
+    }
+
+    /**
+     * @param $method
+     * @param $parameters
+     * @return Media | BMedia
+     */
+    public function __call($method, $parameters)
+    {
+        return $this->isInstanceofArgument(
+            call_user_func_array([$this->media, $method], $parameters)
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function getInputOptions(): array
+    {
+        return $this->input_options;
+    }
 }
 

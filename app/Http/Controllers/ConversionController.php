@@ -17,7 +17,6 @@ class ConversionController extends Controller
      */
     public function convert(): JsonResponse
     {
-
         dispatch(static function ()  {
             return VideoConverterAction::make();
         });

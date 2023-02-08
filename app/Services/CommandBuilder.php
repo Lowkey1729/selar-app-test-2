@@ -29,7 +29,7 @@ class CommandBuilder
     public function __construct(Media $media, VideoInterface $format)
     {
         $this->media = $media;
-//        $this->filters = $this->media->getFiltersCollection();
+        $this->filters = $this->media->getFiltersCollection();
         $this->driver = $this->media->getFFMpegDriver();
         $this->format = $format;
     }
@@ -42,18 +42,7 @@ class CommandBuilder
      */
     public function build(VideoInterface $format, string $path): array
     {
-        $commands = [];
-
-//        foreach ($this->filters as $filter) {
-//            $commands = array_merge($this->getInputOptions(), $filter->apply($this->media->baseMedia(), $format));
-//        }
-
-        if ($this->driver->getConfiguration()->has('ffmpeg.threads')) {
-            $commands = array_merge($commands, ['-threads', $this->driver->getConfiguration()->get('ffmpeg.threads')]);
-        }
-
         $commands[] = $path;
-
         return $commands;
     }
 
