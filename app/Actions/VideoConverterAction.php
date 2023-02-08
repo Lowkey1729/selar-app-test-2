@@ -27,6 +27,7 @@ class VideoConverterAction
      * @throws InvalidArgumentException
      */
     private function __construct()
+    {
 
         $this->handle();
     }
