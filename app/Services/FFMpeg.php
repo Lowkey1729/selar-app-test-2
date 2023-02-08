@@ -18,7 +18,7 @@ use FFMpeg\Media\Video;
 use Psr\Log\LoggerInterface;
 
 
-/** @mixin BFFMpeg*/
+/** @mixin BFFMpeg */
 class FFMpeg
 {
     /** @var BFFMpeg */
@@ -37,10 +37,10 @@ class FFMpeg
      * @param bool $is_tmp
      * @return Media
      */
-    public function open(string $path, bool $is_tmp = false): Media
+    public function open(string $path, array $input_options = [], bool $is_tmp = false): Media
     {
         try {
-            return new Media($this->ffmpeg->open($path), $is_tmp);
+            return new Media($this->ffmpeg->open($path), $is_tmp, $input_options);
         } catch (ExceptionInterface $e) {
             if ($is_tmp) {
                 sleep(.5);

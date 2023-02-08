@@ -43,10 +43,11 @@ class VideoConverterAction
         $conversion = new Conversion();
         $conversion
             ->make()
-            ->open(url('/test.mp4'))
+            ->open(url('/video2.mp4'), ['analyzeduration' => '100M',
+                'probesize' => '100M'])
             ->hls()
-            ->x264('h264')
+            ->x264()
             ->addRepresentations([$r_480p, $r_720p])
-            ->save($this->setUup . '/hls-stream.ts');
+            ->save('./mojeed/hls-stream.ts');
     }
 }

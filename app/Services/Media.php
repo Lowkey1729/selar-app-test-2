@@ -17,7 +17,7 @@ class Media
     /** @var bool */
     private $is_tmp;
     /**
-     * @var
+     * @var array
      */
     protected $input_options;
 
@@ -26,11 +26,13 @@ class Media
      * Media constructor.
      * @param MediaTypeInterface $media
      * @param bool $is_tmp
+     * @param array $input_options
      */
-    public function __construct(MediaTypeInterface $media, bool $is_tmp)
+    public function __construct(MediaTypeInterface $media, bool $is_tmp, array $input_options = [])
     {
         $this->media = $media;
         $this->is_tmp = $is_tmp;
+        $this->input_options = $input_options;
     }
 
 

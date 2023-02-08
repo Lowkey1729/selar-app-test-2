@@ -18,6 +18,11 @@ class HLS implements StreamInterface
     use Formats, Representations;
 
     /**
+     * @var array
+     */
+    private $params = [];
+
+    /**
      * @var string
      */
     protected $path;
@@ -348,6 +353,14 @@ class HLS implements StreamInterface
     public function getStrict(): string
     {
         return $this->strict;
+    }
+
+    /**
+     * @return array
+     */
+    public function getParams(): array
+    {
+        return $this->params;
     }
 
 

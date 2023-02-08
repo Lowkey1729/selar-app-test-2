@@ -19,7 +19,7 @@ class StreamToFileFilter extends FormatFilter
 {
 
     /**
-     * @param $media
+     * @param StreamInterface $media
      * @return mixed
      */
     public function streamFilter(StreamInterface $media): void

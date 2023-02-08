@@ -42,7 +42,15 @@ class CommandBuilder
      */
     public function build(VideoInterface $format, string $path): array
     {
+        $commands = [];
+
+        foreach ($this->filters as $filter) {
+            $commands = array_merge($this->getInputOptions(), $filter->apply($this->media->baseMedia(), $format));
+        }
+        
+
         $commands[] = $path;
+
         return $commands;
     }
 
