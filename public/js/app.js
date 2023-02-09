@@ -1937,7 +1937,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      src: "http://127.0.0.1:8000/selar-converts/hls-converted_480p.m3u8"
+      src: "http://127.0.0.1:8000/selar-converts/hls-converted_480p.m3u8",
+      src1: "http://127.0.0.1:8000/selar-converts/hls-converted_720p.m3u8"
     };
   }
 });
@@ -1998,7 +1999,7 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("div", {
     staticClass: "liveView"
-  }, [_c("h3", [_vm._v("Vue HLS Video Demo")]), _vm._v(" "), _c("hls-player", {
+  }, [_c("h3", [_vm._v("Vue HLS Video Demo (480p)")]), _vm._v(" "), _c("hls-player", {
     ref: "myPlayer",
     attrs: {
       width: 900,
@@ -2007,6 +2008,16 @@ var render = function render() {
       muted: true,
       controls: true,
       source: _vm.src
+    }
+  }), _vm._v(" "), _c("h3", [_vm._v("Vue HLS Video Demo (720p)")]), _vm._v(" "), _c("hls-player", {
+    ref: "myPlayer",
+    attrs: {
+      width: 900,
+      height: 500,
+      autoplay: false,
+      muted: true,
+      controls: true,
+      source: _vm.src1
     }
   })], 1);
 };

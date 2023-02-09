@@ -76,7 +76,7 @@ class HLSFilter extends FormatFilter
      */
     private function getInitFilename(Representation $rep): string
     {
-        return $this->seg_sub_dir . $this->filename . "_" . $rep->getHeight() . "p_" . $this->hls->getHlsFmp4InitFilename();
+        return "./" . ($this->dirname) . "/" . $this->filename . "_" . $rep->getHeight() . "p_" . $this->hls->getHlsFmp4InitFilename();
     }
 
     /**
@@ -86,7 +86,7 @@ class HLSFilter extends FormatFilter
     private function getSegmentFilename(Representation $rep): string
     {
         $ext = ($this->hls->getHlsSegmentType() === "fmp4") ? "m4s" : "ts";
-        return $this->filename . "_" . $rep->getHeight() . "p_%04d." . $ext;
+        return "./" . ($this->dirname) . "/" . $this->filename . "_" . $rep->getHeight() . "p_%04d." . $ext;
     }
 
     /**
@@ -143,7 +143,7 @@ class HLSFilter extends FormatFilter
 
         $this->seg_sub_dir = Utiles::appendSlash(basename($this->dirname));
         $this->seg_filename = $this->dirname . "/" . $this->seg_sub_dir . $this->filename;
-        $this->base_url = $base . $this->seg_sub_dir;
+        $this->base_url = $base ;
     }
 
     /**

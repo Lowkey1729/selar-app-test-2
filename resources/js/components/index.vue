@@ -1,8 +1,12 @@
 <template>
     <div class="liveView">
-        <h3>Vue HLS Video Demo</h3>
+        <h3>Vue HLS Video Demo (480p)</h3>
 
         <hls-player :width="900" :height="500" :autoplay="false" :muted="true" :controls="true" ref="myPlayer" :source="src"/>
+
+        <h3>Vue HLS Video Demo (720p)</h3>
+
+        <hls-player :width="900" :height="500" :autoplay="false" :muted="true" :controls="true" ref="myPlayer" :source="src1"/>
 
     </div>
 </template>
@@ -17,7 +21,8 @@ export default {
     },
     data() {
         return {
-            src:"http://127.0.0.1:8000/selar-converts/hls-converted_480p.m3u8"
+            src:"http://127.0.0.1:8000/selar-converts/hls-converted_480p.m3u8",
+            src1:"http://127.0.0.1:8000/selar-converts/hls-converted_720p.m3u8",
         };
     }
 }

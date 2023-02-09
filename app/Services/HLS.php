@@ -222,7 +222,7 @@ class HLS implements StreamInterface
      */
     public function getSegSubDirectory(): ?string
     {
-        return "items";
+        return "segmented-converts";
     }
 
     /**
