@@ -1,42 +1,46 @@
 <template>
-    <div>
-        <div class="player-container">
-            <video-player class="vjs-custom-skin" ref="videoPlayer" :options="playerOptions">
-            </video-player>
-        </div>
+    <div class="liveView">
+        <h3>Vue HLS Video Demo</h3>
+
+        <hls-player :width="900" :height="500" :autoplay="false" :muted="true" :controls="true" ref="myPlayer" :source="src"/>
 
     </div>
 </template>
+
 <script>
-
-import Vue from "vue";
-import videoPlayer from "vue-vjs-hls";
-
-import VideoPlayer from 'vue-video-player';
-
-Vue.use(VideoPlayer)
-
-
+import 'hls-player/dist/hls-player.css'
+import hlsPlayer from 'hls-player'
 
 export default {
-    data () {
-        return {
-            url: '',
-            playerOptions: {
-                autoplay: false,
-                controls: true,
-                sources: [{
-                    type: "video/hls",
-                    src: "http://127.0.0.1:8000"
-                }]
-            }
-        }
+    components: {
+        hlsPlayer,
     },
-    methods: {
-        handleApply () {
-            this.playerOptions.sources[0].src = this.url
-        }
+    data() {
+        return {
+            src:"http://127.0.0.1:8000/selar-converts/hls-converted_480p.m3u8"
+        };
     }
 }
-
 </script>
+
+<style scoped>
+.liveView {
+    position: relative;
+}
+.selectWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    line-height: 30px;
+    margin: 20px;
+    vertical-align: baseline;
+}
+.inputWrapper {
+    width: 500px;
+    margin: 0 auto;
+}
+.buttonWrapper {
+    text-align: center;
+}
+</style>

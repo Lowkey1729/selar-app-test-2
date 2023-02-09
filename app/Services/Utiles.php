@@ -7,10 +7,10 @@ namespace App\Services;
 class Utiles
 {
     /**
-     * @param string $str
+     * @param string|null $str
      * @return string
      */
-    public static function appendSlash(string $str): string
+    public static function appendSlash(?string $str): ?string
     {
         return $str ? rtrim($str, '/') . "/" : $str;
     }

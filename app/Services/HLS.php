@@ -67,6 +67,11 @@ class HLS implements StreamInterface
     /** @var array */
     private $flags = [];
 
+    /**
+     * @var
+     */
+    private $seg_sub_directory;
+
 
     /**
      * Streaming constructor.
@@ -190,7 +195,7 @@ class HLS implements StreamInterface
      */
     public function getHlsListSize(): int
     {
-        return $this->hls_list_size;
+        return $this->hls_list_size ;
     }
 
 
@@ -217,7 +222,17 @@ class HLS implements StreamInterface
      */
     public function getSegSubDirectory(): ?string
     {
-        return $this->seg_sub_directory;
+        return "items";
+    }
+
+    /**
+     * @param string $hls_base_url
+     * @return HLS
+     */
+    public function setHlsBaseUrl(string $hls_base_url): HLS
+    {
+        $this->hls_base_url = $hls_base_url;
+        return $this;
     }
 
     /**

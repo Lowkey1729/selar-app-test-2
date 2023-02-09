@@ -29,6 +29,7 @@ class HLSFilter extends FormatFilter
     /** @var string */
     private $seg_filename;
 
+
     /**
      * @param Representation $rep
      * @param bool $not_last
@@ -36,7 +37,7 @@ class HLSFilter extends FormatFilter
      */
     private function playlistPath(Representation $rep, bool $not_last): array
     {
-        return [$this->dirname . "/" . $this->filename . "_" . $rep->getHeight() . "p.ts"];
+        return [$this->dirname . "/" . $this->filename . "_" . $rep->getHeight() . "p.m3u8"];
     }
 
     /**
@@ -75,7 +76,7 @@ class HLSFilter extends FormatFilter
      */
     private function getInitFilename(Representation $rep): string
     {
-        return $this->seg_sub_dir . $this->filename . "_" . $rep->getHeight() ."p_". $this->hls->getHlsFmp4InitFilename();
+        return $this->seg_sub_dir . $this->filename . "_" . $rep->getHeight() . "p_" . $this->hls->getHlsFmp4InitFilename();
     }
 
     /**
@@ -85,7 +86,7 @@ class HLSFilter extends FormatFilter
     private function getSegmentFilename(Representation $rep): string
     {
         $ext = ($this->hls->getHlsSegmentType() === "fmp4") ? "m4s" : "ts";
-        return $this->seg_filename . "_" . $rep->getHeight() . "p_%04d." . $ext;
+        return $this->filename . "_" . $rep->getHeight() . "p_%04d." . $ext;
     }
 
     /**
@@ -95,14 +96,14 @@ class HLSFilter extends FormatFilter
     private function initArgs(Representation $rep): array
     {
         $init = [
-            "hls_list_size"             => $this->hls->getHlsListSize(),
-            "hls_time"                  => $this->hls->getHlsTime(),
-            "hls_allow_cache"           => (int)$this->hls->isHlsAllowCache(),
-            "hls_segment_type"          => $this->hls->getHlsSegmentType(),
-            "hls_fmp4_init_filename"    => $this->getInitFilename($rep),
-            "hls_segment_filename"      => $this->getSegmentFilename($rep),
-            "s:v"                       => $rep->size2string(),
-            "b:v"                       => $rep->getKiloBitrate() . "k"
+            "hls_list_size" => $this->hls->getHlsListSize(),
+            "hls_time" => $this->hls->getHlsTime(),
+            "hls_allow_cache" => (int)$this->hls->isHlsAllowCache(),
+            "hls_segment_type" => $this->hls->getHlsSegmentType(),
+            "hls_fmp4_init_filename" => $this->getInitFilename($rep),
+            "hls_segment_filename" => $this->getSegmentFilename($rep),
+            "s:v" => $rep->size2string(),
+            "b:v" => $rep->getKiloBitrate() . "k"
         ];
 
         return array_merge($init,
@@ -134,12 +135,13 @@ class HLSFilter extends FormatFilter
     private function segmentPaths()
     {
         if ($this->hls->getSegSubDirectory()) {
+
             File::makeDir($this->dirname . "/" . $this->hls->getSegSubDirectory() . "/");
         }
 
         $base = Utiles::appendSlash($this->hls->getHlsBaseUrl());
 
-        $this->seg_sub_dir = Utiles::appendSlash($this->hls->getSegSubDirectory());
+        $this->seg_sub_dir = Utiles::appendSlash(basename($this->dirname));
         $this->seg_filename = $this->dirname . "/" . $this->seg_sub_dir . $this->filename;
         $this->base_url = $base . $this->seg_sub_dir;
     }
@@ -151,7 +153,7 @@ class HLSFilter extends FormatFilter
     {
         $this->dirname = str_replace("\\", "/", $this->hls->pathInfo(PATHINFO_DIRNAME));
         $this->filename = $this->hls->pathInfo(PATHINFO_FILENAME);
-//        $this->segmentPaths();
+        $this->segmentPaths();
     }
 
     /**
